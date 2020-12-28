@@ -1,0 +1,103 @@
+// write your code here
+// Get image, height, and width
+var img = new SimpleImage("duke_blue_devil.png"); 
+
+// Printing the original image
+print(img);
+
+// Printig the img after applying the filter
+// ApplyFilterRGB(img);
+// print(img);
+
+// Apply the swapRedGreen(pixel) function
+// var imgHeight = img.getHeight();
+// var imgWidth = img.getWidth();
+// var i;
+// var j;
+    
+//   for(i= 0; i < imgHeight; i++){
+//         for(j=0; j < imgWidth; j++){
+//             var pixel = img.getPixel(j, i);
+//             swapRedGreen(pixel);
+//         }
+//   }
+
+// print(img);
+
+
+// Applying the setBlueYellow function 
+setBlueYellow(img);
+print(img);
+
+
+
+// Part A
+function ApplyFilterRGB(img){
+    
+    var imgHeight = img.getHeight();
+    var imgWidth = img.getWidth();
+    var i;
+    var j;
+
+        // Loop through each pixel in the image, then apply a RGB filter accordingly
+        for(i= 0; i < imgHeight; i++){
+            for(j=0; j < imgWidth; j++){
+                
+                //Get Pixel
+                var pixel = img.getPixel(j, i);
+                
+                if( pixel.getX() < Math.ceil(imgWidth/3) ){
+                    pixel.setRed(255);
+                    
+                }else if ( pixel.getX() >= Math.ceil(imgWidth/3) && pixel.getX() < Math.ceil((2 * imgWidth)/3) ){
+                    pixel.setGreen(255);
+                    
+                }else{
+                    pixel.setBlue(255);
+                }
+            }
+        }
+}// End of function
+    
+    
+// Part B
+function swapRedGreen(pixel){
+    
+    // Declaring variables
+    var pRedValue = pixel.getRed();
+    var pGreenValue = pixel.getGreen();
+    var tValue; 
+    
+    tValue = pRedValue;
+    
+    // Swap red pixel value with green pixel value
+    pixel.setRed(pGreenValue);
+    pixel.setGreen(tValue);
+}
+
+
+// Part C
+function setBlueYellow(img){
+    
+    var imgHeight = img.getHeight();
+    var imgWidth = img.getWidth();
+    var i;
+    var j;
+
+        // Loop through each pixel in the image, then apply a RGB filter accordingly
+        for(i= 0; i < imgHeight; i++){
+            for(j=0; j < imgWidth; j++){
+                
+                //Get Pixel
+                var pixel = img.getPixel(j, i);
+                
+                if( pixel.getRed() == 0 &&  pixel.getGreen() == 51 && pixel.getBlue() == 227 ){
+                    pixel.setRed(255);
+                    pixel.setGreen(255); 
+                    pixel.setBlue(0);
+                    
+                }
+            }
+        }
+}// End of function
+

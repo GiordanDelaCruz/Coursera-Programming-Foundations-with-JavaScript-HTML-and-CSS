@@ -1,0 +1,30 @@
+// Part A
+// Load foreground and background image
+var fgImg = new SimpleImage("drewRobert.png");
+var bgImg = new SimpleImage("dinos.png");
+
+// Create the output image as the same size as the foreground image
+var x = fgImg.getWidth();
+var y = fgImg.getHeight();
+var outImg = new SimpleImage(x, y);
+
+// Loop through all the pixels in the foreground image
+for( var pixel of fgImg.values()){
+    // Get the coordinates of the particular pixel
+    var pixX = pixel.getX();
+    var pixY = pixel.getY();
+    
+    // If pixel is green, set output image to contain the background image pixel
+    if(pixel.getGreen() > pixel.getRed() + pixel.getBlue()){
+        var bgPixel = bgImg.getPixel(pixX, pixY);
+        outImg.setPixel(pixX, pixY, bgPixel);
+    }else{
+        var fgPixel = fgImg.getPixel(pixX, pixY);
+        outImg.setPixel(pixX, pixY, fgPixel);
+    }
+    
+}
+// Print output image 
+print(outImg);
+
+
